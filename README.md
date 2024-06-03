@@ -10,42 +10,18 @@ six_sigma_project/
 ├── data/
 │   └── path_to_rules.json
 │
-├── src/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── database.py
-│   ├── rules.py
-│   ├── six_sigma.py
-│   └── main.py
-│
-├── .gitignore
+├── auto_six_sigma.py
 ├── README.md
 ├── requirements.txt
-└── setup.py
+└── .gitignore
 ```
 
 ### Descripción de Archivos
 - **data/path_to_rules.json**: Archivo JSON que contiene las configuraciones de conexión a la base de datos y las reglas de calidad de datos.
-
-- **src/\_\_init\_\_.py**: Archivo para marcar el directorio como un paquete Python.
-
-- **src/config.py**: Contiene la función `read_config` para leer la configuración desde el archivo JSON.
-
-- **src/database.py**: Contiene la función `fetch_data_from_sql` para conectar a la base de datos SQL Server y obtener los datos.
-
-- **src/rules.py**: Contiene la función `apply_rules` para aplicar las reglas de calidad a los datos.
-
-- **src/six_sigma.py**: Contiene la función `calculate_six_sigma` para calcular el índice Six Sigma basado en los resultados de las reglas aplicadas.
-
-- **src/main.py**: Archivo principal que ejecuta el flujo completo del proyecto: lectura de configuración, obtención de datos, aplicación de reglas y cálculo del índice Six Sigma.
-
-- **.gitignore**: Archivos y directorios a ser ignorados por Git.
-
+- **auto_six_sigma.py**: Script principal que ejecuta el flujo completo del proyecto: lectura de configuración, obtención de datos, aplicación de reglas y cálculo del índice Six Sigma.
 - **README.md**: Documentación del proyecto.
-
 - **requirements.txt**: Dependencias del proyecto.
-
-- **setup.py**: Configuración del paquete Python.
+- **.gitignore**: Archivos y directorios a ser ignorados por Git.
 
 ## Requerimientos
 - Python 3.6 o superior
@@ -53,29 +29,28 @@ six_sigma_project/
 - PyODBC
 
 ## Instalación y Configuración
-1. Clona el repositorio o descarga el proyecto.
+1. Clona el repositorio o crea el proyecto:
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
+   mkdir six_sigma_project
    cd six_sigma_project
+   mkdir data
    ```
 
-2. Instala las dependencias.
+2. Crea los archivos necesarios:
+   - `auto_six_sigma.py`
+   - `data/path_to_rules.json`
+
+3. Llena los archivos con el contenido proporcionado.
+
+4. Instala las dependencias:
    ```bash
-   pip install -r requirements.txt
+   pip install pandas pyodbc
    ```
-
-3. Asegúrate de que el archivo `path_to_rules.json` en el directorio `data/` esté configurado con las conexiones a las bases de datos y las reglas necesarias.
 
 ## Ejecución
 Para ejecutar el proyecto, navega al directorio del proyecto y ejecuta el script principal:
 ```bash
-python src/main.py
-```
-
-También puedes instalar el paquete y ejecutar el comando:
-```bash
-pip install .
-six_sigma
+python auto_six_sigma.py
 ```
 
 Esto ejecutará el flujo completo del proyecto y calculará el índice Six Sigma basado en los datos obtenidos y las reglas aplicadas.
