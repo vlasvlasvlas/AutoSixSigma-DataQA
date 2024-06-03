@@ -1,24 +1,20 @@
 {
-    "connections": [
+    "rules": [
       {
-        "dbconn": "Driver={SQL Server};Server=servidor1;Database=bd1;Uid=usuario1;Pwd=contraseña1;",
-        "query": "SELECT * FROM tabla1",
-        "rules": [
-          {
-            "id": 1,
-            "regla_tipo": "completitud",
-            "description": "Verificar que columna1 no tenga valores nulos",
-            "data_column": "columna1"
-          },
-          {
-            "id": 2,
-            "regla_tipo": "rango",
-            "description": "Verificar que columna2 tenga valores mayores a 10",
-            "data_column": "columna2",
-            "condition": "x > 10"
-          }
-        ]
+        "id": 1,
+        "regla_tipo": "completitud",
+        "description": "Verificar que grupo_fuente_finan no tenga valores nulos",
+        "dbname":"PISGRSTG_PAN",
+        "query": "select count(*) from dbo.mef_vw_ejecucion where grupo_fuente_finan is null"
+      },
+      {
+        "id": 2,
+        "regla_tipo": "completitud",
+        "description": "Verificar que sectorial_sector no tenga nulos",
+        "dbname":"PISGRSTG_PAN",
+        "query": "select count(*) from dbo.mef_vw_ejecucion where sectorial_sector is null"
       }
     ]
   }
   
+
