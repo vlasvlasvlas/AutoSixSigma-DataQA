@@ -1,0 +1,36 @@
+{
+    "connections": [
+      {
+        "dbconn": "Driver={SQL Server};Server=servidor1;Database=bd1;Uid=usuario1;Pwd=contraseña1;",
+        "query": "SELECT * FROM tabla1",
+        "rules": [
+          {
+            "id": 1,
+            "regla_tipo": "completitud",
+            "description": "Verificar que columna1 no tenga valores nulos",
+            "data_column": "columna1"
+          },
+          {
+            "id": 2,
+            "regla_tipo": "rango",
+            "description": "Verificar que columna2 tenga valores mayores a 10",
+            "data_column": "columna2",
+            "condition": "x > 10"
+          }
+        ]
+      },
+      {
+        "dbconn": "Driver={SQL Server};Server=servidor2;Database=bd2;Uid=usuario2;Pwd=contraseña2;",
+        "query": "SELECT * FROM tabla2",
+        "rules": [
+          {
+            "id": 3,
+            "regla_tipo": "completitud",
+            "description": "Verificar que columnaA no tenga valores nulos",
+            "data_column": "columnaA"
+          }
+        ]
+      }
+    ]
+  }
+  
