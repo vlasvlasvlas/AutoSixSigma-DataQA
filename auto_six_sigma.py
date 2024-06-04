@@ -18,8 +18,17 @@ def fetch_data_from_sql(query, dbconn):
     return data
 
 def calculate_six_sigma(df):
-    defects = df.sum().sum()
-    total_opportunities = df.size
+
+    # sum defects on column "data_filter"
+    defects = df['data_filter'].sum()
+
+    print("Defects: ", defects)
+
+    # sum total opportunities on "data_full"
+    total_opportunities = df['data_full'].sum()
+
+    print("Total Opportunities: ", total_opportunities)
+
     defect_per_unit = defects / total_opportunities
     sigma_level = 1 - defect_per_unit
     return sigma_level * 6  # multiplicar por 6 para obtener el nivel sigma
@@ -32,22 +41,29 @@ if __name__ == "__main__":
     for rule in rules:
         # DB
         dbconn = dbconn.replace('DATABASE=;','DATABASE='+rule['dbname']+';')
-        print(dbconn)        
         query = rule['query']
-        print(query)
-        data = fetch_data_from_sql(query, dbconn)
-        print(data)
+        filter = rule['filter']
+
+        data_full = fetch_data_from_sql(query, dbconn)
+
+        data_filter = fetch_data_from_sql(query+" "+filter, dbconn)
         
         results.append({
             "id": rule['id'],
-            "regla_tipo": rule['regla_tipo'],
-            "description": rule['description'],
+            "regla_tipo": rule['type'],
+            "description": rule['desc'],
             "query": query,
-            "resultado": data
+            "filter": filter,
+            "data_full": data_full,
+            "data_filter": data_filter
         })
 
     results_df = pd.DataFrame(results)
-    sigma_level = calculate_six_sigma(results_df[['resultado']])
+
+    # use results_df to calculate the sigma level, must pass 2 columns: "data_full" and "data_filter"
+    sigma_level = calculate_six_sigma(results_df)
+
+   
 
     print(f"Resultados de las reglas aplicadas:")
     print(results_df)
