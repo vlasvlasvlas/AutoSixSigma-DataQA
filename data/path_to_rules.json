@@ -1,22 +1,33 @@
 {
-    "rules": [
-      {
-        "id": 1,
-        "type": "completitud",
-        "desc": "Verificar que grupo_fuente_finan no tenga valores nulos",
-        "dbname": "PISGRSTG_PAN",
-        "query": "select count(*) from dbo.mef_vw_ejecucion",
-        "filter": "where grupo_fuente_finan is null"
-      },
-      {
-        "id": 2,
-        "type": "completitud",
-        "desc": "Verificar que sectorial_sector no tenga nulos",
-        "dbname": "PISGRSTG_PAN",
-        "query": "select count(*) from dbo.mef_vw_ejecucion",
-        "filter": "where sectorial_sector is null"
-      }
-    ]
-  }
-  
-
+  "countries": [
+    {
+      "country_iso2": "PA",
+      "rules": [
+        {
+          "id": 1,
+          "type": "completitud",
+          "desc": "Verificar que grupo_fuente_finan no tenga valores nulos",
+          "dbname": "PISGRSTG_PAN",
+          "query": "select count(*) from dbo.mef_vw_ejecucion",
+          "filter": "where grupo_fuente_finan is null"
+        },
+        {
+          "id": 2,
+          "type": "completitud",
+          "desc": "Verificar que sectorial_sector no tenga nulos",
+          "dbname": "PISGRSTG_PAN",
+          "query": "select count(*) from dbo.mef_vw_ejecucion",
+          "filter": "where sectorial_sector is null"
+        },
+        {
+          "id": 3,
+          "type": "completitud",
+          "desc": "Verificar que sectorial_sector no tenga nulos",
+          "dbname": "PISGRSTG_PAN",
+          "query": "select count(*) from dbo.mef_vw_ejecucion",
+          "filter": "where sectorial_sector is null"
+        }
+      ]
+    }
+  ]
+}
