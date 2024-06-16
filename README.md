@@ -5,7 +5,9 @@ El objetivo de este proyecto es calcular el índice de calidad Six Sigma utiliza
 
 ## ¿Para qué?
 
-El objetivo de este proyecto es automatizar el proceso de cálculo del índice de calidad Six Sigma, algo que anteriormente se hacía manualmente y que no es soportado por herramientas comunes como Great Expectations. Este proyecto proporciona una solución automatizada y eficiente para validar la calidad de los datos, permitiendo a las organizaciones identificar y reducir defectos de manera más efectiva. Con AutoSixSigma-DataQA, se facilita la implementación de un control riguroso de la calidad que incluye el cálculo del Six Sigma, mejorando así la precisión y la confiabilidad de los análisis de datos.
+El objetivo de este proyecto es automatizar el proceso de cálculo del índice de calidad Six Sigma, algo que usualmente tiene un proceso manual, y no es soportado hasta el momento por herramientas  como Great Expectations. 
+
+Este proyecto proporciona una solución automatizada y eficiente para validar la calidad de los datos, permitiendo a las organizaciones identificar y reducir defectos de manera más efectiva.  Facilita la implementación de un control de la calidad que incluye el cálculo del Six Sigma, mejorando así la precisión y el seguimiento en la confiabilidad de los datos.
 
 ## Estructura del Proyecto
 ```
