@@ -1,0 +1,96 @@
+
+    <html>
+    <head>
+        <title>Six Sigma Report</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <style>
+            body {
+                padding: 20px;
+            }
+            .table-container {
+                margin-bottom: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="table-container">
+                <h1>Resultados de las reglas aplicadas</h1>
+                <table border="1" class="dataframe table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th>country_iso2</th>
+      <th>id</th>
+      <th>regla_tipo</th>
+      <th>description</th>
+      <th>query</th>
+      <th>filter</th>
+      <th>data_full</th>
+      <th>data_filter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PA</td>
+      <td>1</td>
+      <td>completitud</td>
+      <td>Verificar que grupo_fuente_finan no tenga valores nulos</td>
+      <td>select count(*) from dbo.mef_vw_ejecucion</td>
+      <td>where grupo_fuente_finan is null</td>
+      <td>300013</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>PA</td>
+      <td>2</td>
+      <td>completitud</td>
+      <td>Verificar que sectorial_sector no tenga nulos</td>
+      <td>select count(*) from dbo.mef_vw_ejecucion</td>
+      <td>where sectorial_sector is null</td>
+      <td>300013</td>
+      <td>1338</td>
+    </tr>
+    <tr>
+      <td>PA</td>
+      <td>3</td>
+      <td>completitud</td>
+      <td>Verificar que sectorial_sector no tenga nulos</td>
+      <td>select count(*) from dbo.mef_vw_ejecucion</td>
+      <td>where sectorial_sector is null</td>
+      <td>300013</td>
+      <td>1338</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+            <div class="table-container">
+                <h1>Resultados finales del proceso</h1>
+                <table border="1" class="dataframe table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th>fecha_ejecucion</th>
+      <th>pais</th>
+      <th>cantidad_reglas_ejecutadas</th>
+      <th>defects</th>
+      <th>total_opportunities</th>
+      <th>defects_per_million_opportunities</th>
+      <th>score_six_sigma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2024-06-16_13-11-45</td>
+      <td>PA</td>
+      <td>3</td>
+      <td>2687</td>
+      <td>900039</td>
+      <td>2985.426187</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+            </div>
+        </div>
+    </body>
+    </html>
+    
