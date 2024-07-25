@@ -1,0 +1,17 @@
+{
+  "countries": [
+    {
+      "country_iso2": "AR_TPW",
+      "rules": [
+        {
+          "id": 1,
+          "type": "completitud",
+          "desc": "Verificar que grupo_fuente_finan no tenga valores nulos",
+          "dbname": "ws",
+          "query": "select count(*) from tupperware.maps_revgeo_maxcamp",
+          "filter": "WHERE score_result = 98"
+        }
+      ]
+    }
+  ]
+}

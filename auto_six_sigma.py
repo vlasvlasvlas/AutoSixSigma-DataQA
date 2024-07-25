@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import pyodbc
+from sqlalchemy import create_engine
 import os
 from dotenv import load_dotenv
 from datetime import datetime
@@ -17,10 +18,14 @@ def read_config(file_path):
     return config["countries"]
 
 
-def fetch_data_from_sql(query, dbconn):
-    conn = pyodbc.connect(dbconn)
-    data = pd.read_sql(query, conn)
-    conn.close()
+def fetch_data_from_sql(query, dbconn, db_type):
+    if db_type == "mssql":
+        conn = pyodbc.connect(dbconn)
+        data = pd.read_sql(query, conn)
+        conn.close()
+    elif db_type == "pgsql":
+        engine = create_engine(dbconn)
+        data = pd.read_sql(query, engine)
     return data
 
 
@@ -99,8 +104,15 @@ def export_to_html(df1, df2, country_iso2, execution_date, folder_name):
 
 
 if __name__ == "__main__":
-    dbconn = os.getenv("DB_CONN")
-    countries = read_config("data/path_to_rules.json")
+    db_type = os.getenv("DB_TYPE")
+    dbconn = os.getenv("MSSQL_CONN") if db_type == "mssql" else os.getenv("PG_CONN")
+
+    config_file = (
+        "data/path_to_rules_mssql.json"
+        if db_type == "mssql"
+        else "data/path_to_rules_pgsql.json"
+    )
+    countries = read_config(config_file)
     results = []
 
     for country in countries:
@@ -108,14 +120,20 @@ if __name__ == "__main__":
         rules = country["rules"]
 
         for rule in rules:
-            dbconn_temp = dbconn.replace(
-                "DATABASE=;", "DATABASE=" + rule["dbname"] + ";"
-            )
+            if db_type == "mssql":
+                dbconn_temp = dbconn.replace(
+                    "DATABASE=;", "DATABASE=" + rule["dbname"] + ";"
+                )
+            elif db_type == "pgsql":
+                dbconn_temp = dbconn.replace("ws", rule["dbname"])
+
             query = rule["query"]
             filter = rule["filter"]
 
-            data_full = fetch_data_from_sql(query, dbconn_temp)
-            data_filter = fetch_data_from_sql(query + " " + filter, dbconn_temp)
+            data_full = fetch_data_from_sql(query, dbconn_temp, db_type)
+            data_filter = fetch_data_from_sql(
+                query + " " + filter, dbconn_temp, db_type
+            )
 
             results.append(
                 {
@@ -157,3 +175,4 @@ if __name__ == "__main__":
     export_to_html(
         results_df, final_results, country_iso2, execution_date, EXPORT_FOLDER
     )
+    print(f"Reporte exportado a: {EXPORT_FOLDER}")
