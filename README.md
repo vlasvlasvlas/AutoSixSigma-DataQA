@@ -145,5 +145,3 @@ Esto ejecutará el flujo completo del proyecto y calculará el índice Six Sigma
 
 ## Licencia
 Este proyecto está licenciado bajo los términos de la licencia MIT.
-
-Espero que este README actualizado cubra todas las nuevas configuraciones y cambios realizados, con las credenciales ofuscadas. Si necesitas más ajustes o información adicional, házmelo saber.
